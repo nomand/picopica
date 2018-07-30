@@ -12,6 +12,7 @@ This project is work in progress.
 
 * Raspberry Pi Zero W
 * Waveshare 1.44 ST7735S LCD HAT
+* OV5647 Camera module (any raspi-compatible will work)
 * INDUSTAR 28mm 2.8f lens
 * [3D Printed parts](/STL/)
 
