@@ -23,10 +23,7 @@ This project is work in progress.
 
 ### Setting up WaveShare screen
 
-edit:
-```
-sudo nano /etc/modules
-```
+edit `sudo nano /etc/modules`
 
 add the following lines:
 ```
@@ -34,10 +31,7 @@ spi-bcm2835
 fbtft_device
 ```
 
-create new file:
-```
-sudo nano /etc/modprobe.d/fbtft.conf
-```
+create new file `sudo nano /etc/modprobe.d/fbtft.conf`
 
 add the following lines:
 ```
@@ -47,15 +41,12 @@ options fbtft_device name=adafruit18_green gpios=reset:27,dc:25,cs:8,led:24 spee
 ```
 
 enable spi in `raspi-config`.
-check that your settings are correct in framebuffer one:
+check that your settings are correct in the secondary framebuffer:
 ```
 fbset -i -fb /dev/fb1
 ```
 
-to display cli on the screen, edit:
-```
-sudo nano /boot/cmdline.txt
-```
+to display cli on the screen, edit `sudo nano /boot/cmdline.txt`
 
 add `fbcon=map:10 fbcon=font:VGA8x8` to the end of the line.
 
