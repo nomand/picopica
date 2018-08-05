@@ -49,10 +49,6 @@ check that your settings are correct in the secondary framebuffer:
 fbset -i -fb /dev/fb1
 ```
 
-to display cli on the screen, edit `sudo nano /boot/cmdline.txt`
-
-add `fbcon=map:10 fbcon=font:VGA8x8` to the end of the line.
-
 ### Install Picamera
 
 `sudo apt-get install python-picamera`
