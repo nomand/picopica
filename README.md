@@ -20,9 +20,11 @@ This project is work in progress.
 
 <img src="/IMAGES/02.jpg">
 
+<img src="/IMAGES/03.jpg">
+
 # Setup
 
-### Setting up WaveShare screen
+### Setup WaveShare screen
 
 edit `sudo nano /etc/modules`
 
@@ -38,7 +40,7 @@ add the following lines:
 ```
 # /etc/modprobe.d/fbtft.conf
 
-options fbtft_device name=adafruit18_green gpios=reset:27,dc:25,cs:8,led:24 speed=40000000 bgr=1 fps=60 custom=1 height=128 width=128 rotate=90
+options fbtft_device name=fb_ili9163 gpios=reset:27,dc:25,cs:8,led:24 speed=40000000 bgr=1 fps=60 custom=1 height=128 width=128 rotate=90
 ```
 
 enable spi in `raspi-config`.
@@ -51,9 +53,33 @@ to display cli on the screen, edit `sudo nano /boot/cmdline.txt`
 
 add `fbcon=map:10 fbcon=font:VGA8x8` to the end of the line.
 
+### Install Picamera
+
+`sudo apt-get install python-picamera`
+
+### Install Pygame
+
+using pip
+
+```
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+python -m pip install --upgrade pip
+python -m pip install pygame
+```
+
+using apt
+
+edit sources `sudo nano /etc/apt/sources.list` and uncomment `deb-src` line and run `apt-get update`
+
+```
+apt-get build-dep python-pygame
+apt-get install python-pygame
+```
+
 ### TODO
 
-* Add live camera preview
+* ~~Add live camera preview~~
 * Add buttons support
 * Add configurable camera capture behaviour
 * Add gui for setting camera options
