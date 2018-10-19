@@ -86,6 +86,10 @@ buttons = [
     [Button((0, 0, 128, 128), bg='test')]
 ]
 
+x = 0
+y = 0
+message = 'Hello World'
+
 os.putenv('SDL_VIDEODRIVER', 'fbcon')
 os.putenv('SDL_FBDEV'      , '/dev/fb1')
 
@@ -93,7 +97,7 @@ pygame.init()
 pygame.mouse.set_visible(False)
 screen = pygame.display.set_mode([128,128], pygame.FULLSCREEN)
 
-font = pygame.font.Font(None, 45)
+font = pygame.font.Font('fonts/habbo.ttf', 16)
 
 camera = picamera.PiCamera()
 camera.rotation = 90
@@ -131,7 +135,21 @@ while(True):
     Key_L = GPIO.input( 5)
     Key_R = GPIO.input(26)
     Key_P = GPIO.input(13)
-
+    
+    if Key_L == True:
+			x += 1
+    if Key_R == True:
+      x -= 1
+    if Key_U == True:
+      y += 1
+    if Key_D == True:
+      y -= 1
+    if Key_A == False:
+			message = 'Hello Merveilles'
+    if Key_B == False:
+			message = 'Hello #the-workshop'
+    if Key_C == False:
+			message = 'github.com/nomand'
   except:
     GPIO.cleanup()
 
@@ -145,9 +163,10 @@ while(True):
   img = pygame.image.frombuffer(rgb[0:(49152)], (128, 128), 'RGB')
   if img:
     screen.blit(img, (0, 0))
-    screen.blit(font.render('Hello World', True, (255,255,255)), (0, 0))
 
   for i,b in enumerate(buttons[0]):
     b.draw(screen)
+
+    screen.blit(font.render(message, False, (255,255,255)), (x, y))
 
   pygame.display.update()
